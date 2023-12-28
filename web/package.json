@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "lts": "^1.2.0",
+    "n": "^9.2.0",
+    "next": "latest",
+    "node": "^21.2.0",
+    "prune": "^0.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
