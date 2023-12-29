@@ -1,0 +1,37 @@
+{
+  "site": {
+    "title": "kubectl1 - Online Kubernetes Manifest Generator & Validator",
+    "base_url": "/",
+    "favicon": "/images/k8s-logo.png"
+  },
+
+  "settings": {
+    "pagination": 6,
+    "summary_length": 200,
+    "blog_folder": "posts"
+  },
+
+  "profile": {
+    "name": "kubectl1",
+    "image": "/images/k8s-logo.png",
+    "designation": "Online Kubernetes AI Toolkit - Coming Soon!",
+    "bio": "kubectl1 (kubectl.one) is a free online Kubernetes development toolkit. It provides a set of AI powered tools to help you develop, validate, and manage your Kubernetes applications."
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "tag_manager_id": "",
+    "copyright": "Made with ❤ in India by <a href=\"https://dhiman.dev\" target=\"_blank\">dhiman.dev</a>"
+  },
+
+  "metadata": {
+    "meta_author": "Statichunt",
+    "meta_image": "",
+    "meta_description": ""
+  },
+
+  "disqus": {
+    "enable": true,
+    "shortname": "themefisher-template"
+  }
+}

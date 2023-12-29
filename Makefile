@@ -23,6 +23,10 @@ test:
 run:
 	go run ${MAIN}
 
+# Runs the application
+run-ui:
+	pushd web && npm run dev && popd
+
 build-ui:
 	pushd web && npm run build && popd
 
@@ -30,6 +34,6 @@ build-docker:
 	docker build -t kubectl1 .
 
 build-docker-ui:
-	docker build -t kubectl1-ui -f Dockerfile.ui ./web
+	docker build --no-cache -t kubectl1-ui -f Dockerfile.ui ./web
 
 .PHONY: build install clean test run build-ui build-docker build-docker-ui

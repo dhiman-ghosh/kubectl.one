@@ -1,0 +1,23 @@
+version: '3'
+services:
+  kubectl1-ui:
+    image: dhimandev/kubectl1-ui
+    container_name: kubectl1-ui
+    networks:
+      - prodnet
+  
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /root/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+       - kubectl1-ui
+    networks:
+      - prodnet
+
+networks:
+  prodnet:
+    driver: bridge

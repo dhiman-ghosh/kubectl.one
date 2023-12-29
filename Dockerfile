@@ -1,5 +1,5 @@
 # Start from the latest golang base image
-FROM golang:latest
+FROM golang:alpine AS builder
 
 # Add Maintainer Info
 LABEL maintainer="Dhiman Ghosh <contact@dhiman.dev>"
@@ -17,7 +17,17 @@ RUN go mod download
 COPY . .
 
 # Build the Go app
-RUN go build -o main cmd/kubectl1/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main cmd/kubectl1/main.go
+
+######## Start a new stage from scratch #######
+FROM alpine:latest  
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+# Copy the Pre-built binary file from the previous stage
+COPY --from=builder /app/main .
 
 # Expose port 8080 to the outside world
 EXPOSE 8080

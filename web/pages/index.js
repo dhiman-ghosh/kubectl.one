@@ -1,131 +1,84 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import config from "@config/config.json";
+import social from "@config/social.json";
+import Base from "@layouts/Baseof";
+import ImageFallback from "@layouts/components/ImageFallback";
+import Pagination from "@layouts/components/Pagination";
+import Post from "@layouts/components/Post";
+import Social from "@layouts/components/Social";
+import { getSinglePage } from "@lib/contentParser";
+import { sortByDate } from "@lib/utils/sortFunctions";
+import { markdownify } from "@lib/utils/textConverter";
+const { blog_folder } = config.settings;
 
-export default function Home() {
+const Home = ({ posts }) => {
+  const { pagination } = config.settings;
+  const { name, image, designation, bio } = config.profile;
+  const sortPostByDate = sortByDate(posts);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <Base>
+      {/* profile */}
+      <div className="section">
+        <div className="container">
+          <div className="row">
+            <div className="mx-auto text-center lg:col-8">
+              <ImageFallback
+                className="mx-auto"
+                src={image}
+                width={220}
+                height={220}
+                priority={true}
+                alt={name}
+              />
+              {markdownify(
+                name,
+                "h1",
+                "mt-12 text-6xl lg:text-8xl font-semibold"
+              )}
+              {markdownify(designation, "p", "mt-6 text-primary text-xl")}
+              {markdownify(bio, "p", "mt-4 leading-9 text-xl")}
+              {/* <Social source={social} className="profile-social-icons mt-8" /> */}
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        footer img {
-          margin-left: 0.5rem;
-        }
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-decoration: none;
-          color: inherit;
-        }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family:
-            Menlo,
-            Monaco,
-            Lucida Console,
-            Liberation Mono,
-            DejaVu Sans Mono,
-            Bitstream Vera Sans Mono,
-            Courier New,
-            monospace;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            Segoe UI,
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            Fira Sans,
-            Droid Sans,
-            Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
+      {/* posts */}
+      {/* <div className="pt-4">
+        <div className="container">
+          <div className="row">
+            <div className="mx-auto lg:col-10">
+              <div className="row">
+                {sortPostByDate.slice(0, pagination).map((post, i) => (
+                  <Post
+                    className="col-12 mb-6 sm:col-6"
+                    key={"key-" + i}
+                    post={post}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-12">
+            <Pagination
+              totalPages={Math.ceil(posts.length / pagination)}
+              currentPage={1}
+            />
+          </div>
+        </div>
+      </div> */}
+    </Base>
   );
-}
+};
+
+export default Home;
+
+// for homepage data
+export const getStaticProps = async () => {
+  const posts = getSinglePage(`content/${blog_folder}`);
+  return {
+    props: {
+      posts: posts,
+    },
+  };
+};
