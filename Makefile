@@ -5,7 +5,7 @@ MAIN=cmd/kubectl1/main.go
 
 # Builds the project
 build:
-	go build -o ${BINARY} ${MAIN}
+	CGO_ENABLED=0 go build -v -a -installsuffix cgo -o ${BINARY} ${MAIN}
 
 # Installs our project: copies binaries
 install:
@@ -31,7 +31,7 @@ build-ui:
 	pushd web && npm run build && popd
 
 build-docker:
-	docker build -t kubectl1 .
+	docker build --no-cache -t kubectl1 .
 
 build-docker-ui:
 	docker build --no-cache -t kubectl1-ui -f Dockerfile.ui ./web

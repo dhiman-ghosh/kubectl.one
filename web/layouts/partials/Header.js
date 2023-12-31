@@ -30,8 +30,8 @@ const Header = () => {
       }
     } else {
       //if route not match
-      navList.splice(1, 0, ...categories);
-      navList.splice(navList.length - 2, menu.main.length - 1);
+      // navList.splice(1, 0, ...categories);
+      // navList.splice(navList.length - 2, menu.main.length - 1);
       setNavMenu(navList);
     }
 
@@ -65,7 +65,7 @@ const Header = () => {
           </button>
           {/* /navbar toggler */}
 
-          {router.asPath !== "/" && (
+          {/* {router.asPath !== "/" && (
             <div className="hidden text-center md:block">
               <Link
                 className="mb-12  inline-flex items-center text-primary hover:underline"
@@ -87,7 +87,7 @@ const Header = () => {
                 Back to Home
               </Link>
             </div>
-          )}
+          )} */}
 
           <ul
             id="nav-menu"

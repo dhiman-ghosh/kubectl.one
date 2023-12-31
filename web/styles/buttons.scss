@@ -6,6 +6,10 @@
   @apply rounded border-none bg-white text-black no-underline hover:bg-primary;
 }
 
+.btn-right {
+  @apply float-right;
+}
+
 .btn-outline-primary {
   @apply border-primary bg-transparent hover:bg-primary hover:text-dark;
 }

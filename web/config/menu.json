@@ -3,6 +3,14 @@
     {
       "name": "Home",
       "url": "/"
+    },
+    {
+      "name": "Manifest Validator",
+      "url": "/manifest-validator"
+    },
+    {
+      "name": "More Tools Coming Soon",
+      "url": "#"
     }
   ]
 }

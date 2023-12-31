@@ -16,8 +16,10 @@ RUN go mod download
 # Copy the source from the current directory to the Working Directory inside the container
 COPY . .
 
+RUN go mod tidy
+
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main cmd/kubectl1/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -v -a -installsuffix cgo -o main cmd/kubectl1/main.go
 
 ######## Start a new stage from scratch #######
 FROM alpine:latest  

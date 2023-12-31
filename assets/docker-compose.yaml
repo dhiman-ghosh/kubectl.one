@@ -5,7 +5,13 @@ services:
     container_name: kubectl1-ui
     networks:
       - prodnet
-  
+ 
+  kubectl1:
+    image: dhimandev/kubectl1
+    container_name: kubectl1
+    networks:
+      - prodnet
+ 
   nginx:
     image: nginx:alpine
     container_name: nginx

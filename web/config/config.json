@@ -14,7 +14,7 @@
   "profile": {
     "name": "kubectl1",
     "image": "/images/k8s-logo.png",
-    "designation": "Online Kubernetes AI Toolkit - Coming Soon!",
+    "designation": "Online Kubernetes AI Toolkit",
     "bio": "kubectl1 (kubectl.one) is a free online Kubernetes development toolkit. It provides a set of AI powered tools to help you develop, validate, and manage your Kubernetes applications."
   },
 

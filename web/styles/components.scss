@@ -1,6 +1,6 @@
 // section style
 .section {
-  @apply py-28;
+  @apply pt-28;
 }
 
 // container
@@ -149,3 +149,9 @@
     @apply border-[#ff918ccc] bg-[rgba(255,145,140,.15)];
   }
 }
+
+// log
+.logviewer {
+  height: 600px;
+}
+
