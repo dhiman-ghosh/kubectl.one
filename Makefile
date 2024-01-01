@@ -7,9 +7,10 @@ MAIN=cmd/kubectl1/main.go
 build:
 	CGO_ENABLED=0 go build -v -a -installsuffix cgo -o ${BINARY} ${MAIN}
 
-# Installs our project: copies binaries
+# Installs dependencies
 install:
 	go install ${MAIN}
+	pushd web && npm install && popd
 
 # Cleans our project: deletes binaries
 clean:

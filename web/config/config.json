@@ -2,7 +2,7 @@
   "site": {
     "title": "kubectl1 - Online Kubernetes Manifest Generator & Validator",
     "base_url": "/",
-    "favicon": "/images/k8s-logo.png"
+    "favicon": "/images/favicon.svg"
   },
 
   "settings": {

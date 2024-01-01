@@ -3,7 +3,6 @@ import { useHeaderContext } from "context/state";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import OneAnimation from "@layouts/components/OnePathMotion";
 
 const Header = () => {
   // router
@@ -42,7 +41,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`header mt-8 pt-12 pb-3`}>
+      <header className={`header mt-2 pt-12 pb-3`}>
         <nav className="navbar container text-center md:text-left">
           {/* navbar toggler */}
           <button
@@ -72,7 +71,7 @@ const Header = () => {
                 className="mb-6 inline-flex items-center text-primary hover:underline"
                 href="/"
               >
-                <span className="mr-1 text-4xl text-white">kubectl</span>
+                <span className="mr-1 text-4xl text-white" style={{userSelect: 'none'}}>kubectl</span>
                 <svg
                   className="mr-2"
                   width="15"
@@ -124,6 +123,7 @@ const Header = () => {
                     <Link
                       onClick={() => setOpenMenu(false)}
                       href={menu.url}
+                      target={menu.url.startsWith("http") ? "_blank" : ""}
                       className={`nav-link inline-block ${
                         !menu.url.includes("/categories") && "text-dark"
                       } ${router.asPath === menu.url && "nav-link-active"}`}

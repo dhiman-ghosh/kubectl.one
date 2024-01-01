@@ -25,15 +25,15 @@ const PathAnimation = () => {
 
   return (
     <div className='mt-12 font-semibold' 
-      style={{width: '600px',
+      style={{width: '476px',
               fontSize: '8rem',
-              textAlign: 'right',
               marginLeft: 'auto',
-              marginRight: 'auto'
+              marginRight: 'auto',
+              userSelect: 'none',
             }}
     >
       kubectl
-      <motion.svg width="100" height="100" style={{float: 'right', marginTop: '46px', marginLeft: '10px'}}>
+      <motion.svg width="50" height="100" style={{float: 'right', marginTop: '46px', marginLeft: 'auto', marginRight: 'auto'}}>
         <motion.path
           d="M 20 100 V 20 H 0 V 10 C 12 10 10 0 20 0 H 40 V 100 H 20 Z"
           variants={icon}

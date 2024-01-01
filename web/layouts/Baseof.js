@@ -5,6 +5,7 @@ import Header from "@partials/Header";
 import { TaxonomySlugProvider } from "context/state";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import ReactGA from "react-ga4";
 
 const Base = ({
   title,
@@ -22,6 +23,7 @@ const Base = ({
   return (
     <>
       <Head>
+        {ReactGA.initialize("G-5R3WJLS326")}
         {/* title */}
         <title>
           {plainify(
