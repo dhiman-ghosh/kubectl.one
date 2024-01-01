@@ -8,10 +8,15 @@ import { useAPIResponse } from 'context/apiresp';
 
 function createLogString(jsonArray) {
     let logString = '';
-    jsonArray.forEach((obj) => {
-        const { level, msg } = obj;
-        logString += `${level}: ${msg}\n`;
-    });
+    if (jsonArray !== null && jsonArray.length > 0) {
+        jsonArray.forEach((obj) => {
+            const { level, msg } = obj;
+            logString += `${level}: ${msg}\n`;
+        });
+    }
+    if (logString === '') {
+        logString = 'Sorry, could not validate the manifest file! Try another...';
+    }
     return logString;
 }
 
@@ -19,22 +24,28 @@ const YAMLEditor = () => {
     const [yamlCode, setYamlCode] = useState('');
     const apiResponseContext = useAPIResponse();
 
-    const handlePaste = () => {
-        setTimeout(handleSubmit, 500);
+    const handlePaste = (pastedText) => {
+        if ((yamlCode === '') && (pastedText !== '')) {
+            handleSubmit(pastedText);
+        }
     }
     /**
      * Handles the submission of the YAML code.
      */
-    const handleSubmit = () => {
+    const handleSubmit = (pastedYaml) => {
         // Handle the submission of the YAML code
+        var yaml = yamlCode;
         apiResponseContext.setAPIResponse('Validating... Please wait...');
+        if (typeof pastedYaml === 'string' || pastedYaml instanceof String) {
+            yaml = pastedYaml;
+        }
 
         fetch('/api/v1/validate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-yaml'
             },
-            body: yamlCode
+            body: yaml
         })
         .then(response => response.json())
         .then(data => {

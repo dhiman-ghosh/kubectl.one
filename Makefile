@@ -31,9 +31,9 @@ build-ui:
 	pushd web && npm run build && popd
 
 build-docker:
-	docker build --no-cache -t kubectl1 .
+	docker build --no-cache -t kubectl1 -t dhimandev/kubectl1 .
 
 build-docker-ui:
-	docker build --no-cache -t kubectl1-ui -f Dockerfile.ui ./web
+	docker build --no-cache -t kubectl1-ui -t dhimandev/kubectl1-ui -f Dockerfile.ui ./web
 
 .PHONY: build install clean test run build-ui build-docker build-docker-ui
