@@ -1,5 +1,10 @@
-import React from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import dynamic from 'next/dynamic';
+
+const SyntaxHighlighter = dynamic(() =>
+    import('react-syntax-highlighter').then((module) =>
+        module.Prism
+    )
+);
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import { useAPIResponse } from 'context/apiresp';
